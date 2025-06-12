@@ -4,11 +4,14 @@ option go_package = "github.com/Dmitriihub/project-protos/proto/task";
 
 message Task {
   uint32 id = 1;
-  string title = 2;
+  uint32 userId = 2;
+  string title = 3;
+  bool isDone = 4;
 }
 
 message CreateTaskRequest {
-  string title = 1;
+  uint32 userId = 1;
+  string title = 2;
 }
 message CreateTaskResponse {
   Task task = 1;
