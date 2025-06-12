@@ -19,6 +19,8 @@ message CreateTaskResponse {
 message UpdateTaskRequest {
   uint32 id = 1;
   string title = 2;
+  bool isDone = 3;
+  uint32 userId = 4;
 }
 message UpdateTaskResponse {
   Task task = 1;
@@ -30,6 +32,17 @@ message DeleteTaskRequest {
 message DeleteTaskResponse {
   bool success = 1;
 }
+message GetTaskRequest {
+  uint32 id = 1;
+}
+
+message GetTaskResponse {
+  Task task = 1;
+}
+
+message ListTasksByUserRequest {
+  uint32 userId = 1;
+}
 
 message ListTasksRequest {}
 message ListTasksResponse {
@@ -38,8 +51,9 @@ message ListTasksResponse {
 
 service TaskService {
   rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
-  rpc GetTask (Task) returns (Task);
   rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskResponse);
   rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskResponse);
   rpc ListTasks  (ListTasksRequest)  returns (ListTasksResponse);
+  rpc GetTask (GetTaskRequest) returns (GetTaskResponse);
+  rpc ListTasksByUser (ListTasksByUserRequest) returns (ListTasksResponse);
 }
